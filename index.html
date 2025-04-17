@@ -300,34 +300,95 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
+        /* Portfolio section organization */
+        .portfolio-section {
+            margin-bottom: 4rem;
+        }
         
-        .portfolio {
-            padding: 8rem 0;
-            background-color: var(--secondary);
+        .portfolio-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            color: var(--accent);
             position: relative;
         }
         
-        .portfolio-grid {
+        .portfolio-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        /* Responsive grid layouts */
+        .landscape-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 2rem;
         }
         
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .flyer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Portfolio items */
         .portfolio-item {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
             opacity: 0;
             transform: translateY(30px);
+            height: 100%;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .portfolio-img {
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Image size control for different types */
+        .landscape-img {
             width: 100%;
-            height: 350px;
+            height: 300px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
         
+        .logo-img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background-color: rgba(17, 34, 64, 0.8);
+            padding: 1rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .flyer-img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Overlay styling */
         .portfolio-overlay {
             position: absolute;
             top: 0;
@@ -355,37 +416,31 @@
         
         .portfolio-title {
             color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
         }
         
         .portfolio-category {
             color: var(--text);
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
         }
         
         .portfolio-description {
             color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            opacity: 0.9;
         }
         
-        .logos-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .portfolio a, .portfolio button a {
+            text-decoration: none;
+            color: var(--accent);
         }
-        .flyers-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .flyers-img{
-            width: 100%;
-            height: 70vh;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+
+
+
         .contact {
             padding: 10rem 0;
             position: relative;
@@ -522,10 +577,20 @@
             z-index: 9999;
             opacity: 0;
         }
-        .portfolio a, button a{
+        button a{
             text-decoration: none;
             color: var(--accent);
         }
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .hero{
+                margin-top: 10%;
+            }  
+            .landscape-grid {
+                grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero{
                 margin-top: 10%;
@@ -533,211 +598,69 @@
             .hero-title {
                 font-size: 3rem;
             }
-            
-            .nav-links {
-                display: none;
+            .landscape-grid, .logo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
             
-        }
-        @media (max-width: 700px){
-            .logos-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(45vw, 1fr));
-            gap: 2rem;
-            }
-            .logos-grid img{
-                height: 100vh;
-            }
-            .fylers-grid{
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-                gap: 2rem;
-            }
-            .fylers-grid img{
-                height: 70vh;
-            }
-            .flyers-img{
-                width: 100%;
-                height: 100vh;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-            .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
+            .flyer-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .portfolio-item {
-                position: relative;
-                overflow: hidden;
-                border-radius: 10px;
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            
-            .portfolio-img {
-                width: 100%;
-                height: 350px;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-        }
-        @media (max-width: 560px){
-            .hero{
-                margin-top: 30%;
-            }
-            .logos-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(45vw, 1fr));
-            gap: 2rem;
-            }
-            .logos-grid img{
-                height: 75vh;
-            }
-            .fylers-grid{
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-                gap: 2rem;
-            }
-            .fylers-grid img{
-                height: 70vh;
-            }
-            .flyers-img{
-                width: 100%;
-                height: 100vh;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-            .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
-            }
-            
-            .portfolio-item {
-                position: relative;
-                overflow: hidden;
-                border-radius: 10px;
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            
-            .portfolio-img {
-                width: 100%;
-                height: 350px;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-        }
-        @media (max-width: 420px){
-            .hero{
-                margin-top: 30%;
-            }
-            .logos-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(45vw, 1fr));
-            gap: 2rem;
-            }
-            .logos-grid img{
-                height: 55vh;
-            }
-            .fylers-grid{
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-                gap: 2rem;
-            }
-            .fylers-grid img{
-                height: 80vh;
-            }
-            .flyers-img{
-                width: 100%;
-                height: 100vh;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-            .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            }
-            
-            .portfolio-item {
-                position: relative;
-                overflow: hidden;
-                border-radius: 10px;
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            
-            .portfolio-img {
-                width: 100%;
+            .landscape-img {
                 height: 200px;
-                object-fit: cover;
-                transition: transform 0.3s ease;
+            }
+            
+            .logo-img {
+                height: 260px;
+            }
+            
+            .flyer-img {
+                height: 500px;
             }
         }
-        @media (max-width: 360px){
-            .portfolio-title {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .portfolio-category {
-            color: var(--text);
-            margin-bottom: .5rem;
-        }
-        
-        .portfolio-description {
-            color: var(--text-secondary);
-            line-height: 1;
-            font-size: 0.8rem;
-        }
+    
+        @media (max-width: 480px) {
             .hero{
-                margin-top: 30%;
+                margin-top: 50%;
             }
-            .logos-grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-            gap: 2rem;
+            .hero-title {
+                font-size: 3rem;
             }
-            .logos-grid img{
-                height: 40vh;
-            }
-            .fylers-grid{
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
-                gap: 2rem;
-            }
-            .fylers-grid img{
-                height: 50vh;
-            }
-            .flyers-img{
-                width: 100%;
-                height: 100vh;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-            .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            .landscape-grid, .logo-grid, .flyer-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
             }
             
-            .portfolio-item {
-                position: relative;
-                overflow: hidden;
-                border-radius: 10px;
-                opacity: 0;
-                transform: translateY(30px);
+            .landscape-img {
+                height: 200px;
             }
             
-            .portfolio-img {
-                width: 100%;
-                height: 180px;
-                object-fit: cover;
-                transition: transform 0.3s ease;
+            .logo-img {
+                height: 200px;
+            }
+            
+            .flyer-img {
+                height: 500px;
+            }
+            
+            .portfolio-title {
+                font-size: 1.5rem;
+            }
+            
+            .portfolio-category {
+                font-size: 0.8rem;
+            }
+            
+            .portfolio-description {
+                font-size: 0.75rem;
+            }
+            
+            .portfolio-heading {
+                font-size: 1.5rem;
+            }
+            
+            .portfolio-overlay {
+                padding: 1rem;
             }
         }
     </style>
@@ -849,275 +772,287 @@
             <div class="section-heading">
                 <h2 class="section-title">My Portfolio</h2>
             </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="AVHA CREATIONSS.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://moira-glenda.github.io/Avha-Creations/">Avha Creations</a></h3>
-                        <p class="portfolio-category">Web Design</p>
-                        <p class="portfolio-description">A fully responsive e-commerce platform with modern UI/UX design and seamless experience.</p>
+            
+            <!-- Websites & Apps (Landscape) -->
+            <div class="portfolio-section">
+                <h3 class="portfolio-heading">Web & App Design</h3>
+                <div class="landscape-grid">
+                    <div class="portfolio-item">
+                        <img src="AVHA CREATIONSS.png" alt="Avha Creations" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://moira-glenda.github.io/Avha-Creations/">Avha Creations</a></h3>
+                            <p class="portfolio-category">Web Design</p>
+                            <p class="portfolio-description">A fully responsive e-commerce platform with modern UI/UX design and seamless experience.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="WARD GUARDIANS.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Ward Management System</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">A final year project on a Ward Management System, developed using the MVC architecture. The system is fully responsive across devices.</p>
+                    <div class="portfolio-item">
+                        <img src="WARD GUARDIANS.png" alt="Ward Management System" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Ward Management System</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">A final year project on a Ward Management System, developed using the MVC architecture.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MOMENTS OF US.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://moira-glenda.github.io/Moments-Of-Us/">Moments Of Us</a></h3>
-                        <p class="portfolio-category">Web Design</p>
-                        <p class="portfolio-description">Developed a side project showcasing a love story timeline, enhanced with elegant animations and interactive design.</p>
+                    <div class="portfolio-item">
+                        <img src="MOMENTS OF US.png" alt="Moments Of Us" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://moira-glenda.github.io/Moments-Of-Us/">Moments Of Us</a></h3>
+                            <p class="portfolio-category">Web Design</p>
+                            <p class="portfolio-description">Developed a side project showcasing a love story timeline with elegant animations.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE MAIN WEBSITE.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGY_4StqBk/r4_w2hZqjbl7AbtZ1CH0Jw/edit">Matwise World</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Developed a prototype to bring the concept to life, allowing for user feedback and iterative improvements.</p>
+                    <div class="portfolio-item">
+                        <img src="MATWISE MAIN WEBSITE.png" alt="Matwise World" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGY_4StqBk/r4_w2hZqjbl7AbtZ1CH0Jw/edit">Matwise World</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Developed a prototype to bring the concept to life, allowing for user feedback.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE HEAVENLY HAVEN.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz4Uuh-M/Xtd37I2sNhQemL7wxTWeBQ/edit">Matwise Heavenly Haven</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Designed a user-focused prototype for an Airbnb-style platform, ensuring a smooth experience for both hosts and guests.</p>
+                    <div class="portfolio-item">
+                        <img src="MATWISE HEAVENLY HAVEN.png" alt="Matwise Heavenly Haven" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz4Uuh-M/Xtd37I2sNhQemL7wxTWeBQ/edit">Matwise Heavenly Haven</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Designed a user-focused prototype for an Airbnb-style platform.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE CYBER CAFE QUE.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz4Uuh-M/Xtd37I2sNhQemL7wxTWeBQ/edit">Matwise Cyber Cafe Que</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Minimalist yet distinctive business cards for an architecture studio with embossed elements.</p>
+                    <div class="portfolio-item">
+                        <img src="MATWISE CYBER CAFE QUE.png" alt="Matwise Cyber Cafe Que" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz4Uuh-M/Xtd37I2sNhQemL7wxTWeBQ/edit">Matwise Cyber Cafe Que</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Minimalist yet distinctive business cards for an architecture studio.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="GLENOLWET.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">GlenOlwet</h3>
-                        <p class="portfolio-category">Web Design</p>
-                        <p class="portfolio-description">Developed a side project aimed at simplifying the search for student accommodation through an intuitive and user-friendly platform.</p>
+                    <div class="portfolio-item">
+                        <img src="GLENOLWET.png" alt="GlenOlwet" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">GlenOlwet</h3>
+                            <p class="portfolio-category">Web Design</p>
+                            <p class="portfolio-description">Developed a project aimed at simplifying the search for student accommodation.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="GREEN LEAF.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Green Leaf</h3>
-                        <p class="portfolio-category">Web Design</p>
-                        <p class="portfolio-description">Designed and developed a modern, conversion-focused landing page for a new product as a side project.</p>
+                    <div class="portfolio-item">
+                        <img src="GREEN LEAF.png" alt="Green Leaf" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Green Leaf</h3>
+                            <p class="portfolio-category">Web Design</p>
+                            <p class="portfolio-description">Designed a modern, conversion-focused landing page for a new product.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="GLENDA.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Glenda Muthuhadini</h3>
-                        <p class="portfolio-category">Web Design</p>
-                        <p class="portfolio-description">Designed and developed my own portfolio website to showcase projects and skills, as a personal side project.</p>
+                    <div class="portfolio-item">
+                        <img src="GLENDA.png" alt="Glenda Muthuhadini" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Glenda Muthuhadini</h3>
+                            <p class="portfolio-category">Web Design</p>
+                            <p class="portfolio-description">Designed and developed my own portfolio website to showcase projects and skills.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="UI DESIGN.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGV5iO9Uho/YwGVZMaMU5aDm9LxwMPODg/edit">Mom Connect</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Designed and prototyped the Mom Connect website — a platform that helps expecting and new moms manage appointments and access baby care resources.</p>
+                    <div class="portfolio-item">
+                        <img src="UI DESIGN.png" alt="Mom Connect" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGV5iO9Uho/YwGVZMaMU5aDm9LxwMPODg/edit">Mom Connect</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Designed and prototyped the Mom Connect website for expecting and new moms.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Untitled design (1).png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGOHIVSb7M/EVF1EwVXDzfQLpdM1uyF8g/edit">Zindela Projects And Logistics</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Designed and prototyped an online ordering platform for a Shisanyama business, streamlining the process of ordering local food.</p>
+                    <div class="portfolio-item">
+                        <img src="Untitled design (1).png" alt="Zindela Projects And Logistics" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGOHIVSb7M/EVF1EwVXDzfQLpdM1uyF8g/edit">Zindela Projects</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Designed an online ordering platform for a Shisanyama business.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISEE.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz5qNmoc/H1YtRX5S8EtBG9vgaplOEw/edit">Matwise Lensation</a></h3>
-                        <p class="portfolio-category">Prototyping</p>
-                        <p class="portfolio-description">Designed an elegant prototype for a photography website, emphasizing visual storytelling with an intuitive layout for showcasing high-quality images.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="AVHA BUSINESS CARD.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha Creations</h3>
-                        <p class="portfolio-category">Business Card</p>
-                        <p class="portfolio-description">Designed a professional business card.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Black Gold Diamonds Luxury Business Card.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Viviid Vision</h3>
-                        <p class="portfolio-category">Business Card</p>
-                        <p class="portfolio-description">Created a custom business card design to reflect brand identity and professionalism.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="BUSINESS PROFILE.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha Creations</h3>
-                        <p class="portfolio-category">Business Profile</p>
-                        <p class="portfolio-description">Crafted a detailed business profile showcasing the company’s mission, services, and unique value proposition.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Red Black Modern Creative Business Card.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha and Sons</h3>
-                        <p class="portfolio-category">Business Card</p>
-                        <p class="portfolio-description">Designed a sleek and memorable business card that captures the essence of the brand.</p>
+                    <div class="portfolio-item">
+                        <img src="MATWISEE.png" alt="Matwise Lensation" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title"><a href="https://www.canva.com/design/DAGkz5qNmoc/H1YtRX5S8EtBG9vgaplOEw/edit">Matwise Lensation</a></h3>
+                            <p class="portfolio-category">Prototyping</p>
+                            <p class="portfolio-description">Designed an elegant prototype for a photography website.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>    
-            <br>
-            <div class="logos-grid">
-                <div class="portfolio-item">
-                    <img src="AVHA LOGO (1).png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Viviid Vision</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Designed a unique logo that reflects the brand’s identity.</p>
+            
+            <!-- Business Cards Section -->
+            <div class="portfolio-section">
+                <h3 class="portfolio-heading">Business Cards & Profiles</h3>
+                <div class="landscape-grid">
+                    <div class="portfolio-item">
+                        <img src="AVHA BUSINESS CARD.png" alt="Avha Creations Business Card" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha Creations</h3>
+                            <p class="portfolio-category">Business Card</p>
+                            <p class="portfolio-description">Designed a professional business card.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="AVHA CREATIONS.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha CReations</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Built a logo that enhances brand recognition and consistency across marketing channels.</p>
+                    <div class="portfolio-item">
+                        <img src="Black Gold Diamonds Luxury Business Card.png" alt="Luxury Business Card" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Viviid Vision</h3>
+                            <p class="portfolio-category">Business Card</p>
+                            <p class="portfolio-description">Created a custom business card design to reflect brand identity.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE LOGO.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Juvenice FC</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Crafted a visually impactful logo that balances creativity and clarity.</p>
+                    <div class="portfolio-item">
+                        <img src="BUSINESS PROFILE.png" alt="Avha Creations Business Profile" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha Creations</h3>
+                            <p class="portfolio-category">Business Profile</p>
+                            <p class="portfolio-description">Crafted a detailed business profile showcasing the company's mission.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="ZINDELA LOGO.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Zindela Projects And Logistics</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Created a clean, versatile logo tailored to the brand’s values and target audience.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="DEVDYNAMOS LOGO.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">DevDynamos</h3>
-                        <p class="portfolio-category">Logo Design </p>
-                        <p class="portfolio-description">Designed a memorable logo from concept to final version, including sketches, digital drafts, and mockups.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE LENSATION.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Matwise Lensation</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Collaborated with the client to design a custom logo aligned with their vision and market positioning.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="CTTECH.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">CTTECH</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Transformed brand values into a symbolic, meaningful logo through thoughtful design and iteration.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="V T E C.png" alt="placeholder" class="portfolio-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">ViTech</h3>
-                        <p class="portfolio-category">Logo Design</p>
-                        <p class="portfolio-description">Minimalist yet distinctive business cards for an architecture studio with embossed elements.</p>
+                    <div class="portfolio-item">
+                        <img src="Red Black Modern Creative Business Card.png" alt="Modern Business Card" class="landscape-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha and Sons</h3>
+                            <p class="portfolio-category">Business Card</p>
+                            <p class="portfolio-description">Designed a sleek and memorable business card.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>    
-            <br>
-            <div class="logos-grid fylers-grid">
-                <div class="portfolio-item">
-                    <img src="WEBSITE CREATION SERVICES.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Viviid Vision</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Created a visually appealing poster highlighting key services offered, making it easy for clients to understand and take action.</p>
+            
+            <!-- Logo Design Section -->
+            <div class="portfolio-section">
+                <h3 class="portfolio-heading">Logo Design</h3>
+                <div class="logo-grid">
+                    <div class="portfolio-item">
+                        <img src="AVHA LOGO (1).png" alt="Viviid Vision Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Viviid Vision</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Designed a unique logo that reflects the brand's identity.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="AVHA CREATIONS.png" alt="Avha Creations Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha Creations</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Built a logo that enhances brand recognition across marketing channels.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="MATWISE LOGO.png" alt="Juvenice FC Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Juvenice FC</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Crafted a visually impactful logo that balances creativity and clarity.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="ZINDELA LOGO.png" alt="Zindela Projects Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Zindela Projects</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Created a clean, versatile logo tailored to the brand's values.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="DEVDYNAMOS LOGO.png" alt="DevDynamos Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">DevDynamos</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Designed a memorable logo from concept to final version.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="MATWISE LENSATION.png" alt="Matwise Lensation Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Matwise Lensation</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Collaborated with the client to design a custom logo.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="CTTECH.png" alt="CTTECH Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">CTTECH</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Transformed brand values into a symbolic, meaningful logo.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="V T E C.png" alt="ViTech Logo" class="logo-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">ViTech</h3>
+                            <p class="portfolio-category">Logo Design</p>
+                            <p class="portfolio-description">Created a minimalist yet distinctive logo design.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <img src="MATWISE.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Matwise World</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Designed a clear and professional service offering poster to showcase available services and attract potential customers.</p>
+            </div>
+            
+            <!-- Flyers & Posters Section -->
+            <div class="portfolio-section">
+                <h3 class="portfolio-heading">Flyers & Posters</h3>
+                <div class="flyer-grid">
+                    <div class="portfolio-item">
+                        <img src="WEBSITE CREATION SERVICES.png" alt="Website Creation Services" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Viviid Vision</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Created a visually appealing poster highlighting key services offered.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="HEALING AND TESTIMONY.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Healing And Testimony</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Created an inviting church event poster that encourages congregation participation and provides all event details.</p>
+                    <div class="portfolio-item">
+                        <img src="MATWISE.png" alt="Matwise World Poster" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Matwise World</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Designed a clear and professional service offering poster.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Freshly Slaughtered & Cleaned Hardbody Chickens (1).png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha Services</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Created a sleek and informative poster showcasing the quality and freshness of cleaned Hardbody chickens.</p>
+                    <div class="portfolio-item">
+                        <img src="HEALING AND TESTIMONY.png" alt="Healing And Testimony" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Healing And Testimony</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Created an inviting church event poster.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="D1-GAME-NIGHT.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">D1 Game Night</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Crafted a playful and visually dynamic game night poster with engaging graphics and fun typography to draw attention.</p>
+                    <div class="portfolio-item">
+                        <img src="Freshly Slaughtered & Cleaned Hardbody Chickens (1).png" alt="Avha Services" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha Services</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Created a sleek and informative poster showcasing products.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Brown Gold Classic Hair Salon Flyer.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Avha Creations</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Created a visually appealing salon service poster that highlights key offerings and encourages customer bookings.</p>
+                    <div class="portfolio-item">
+                        <img src="D1-GAME-NIGHT.png" alt="D1 Game Night" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">D1 Game Night</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Crafted a playful and visually dynamic game night poster.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Blue and White Blue and Orange Professional  Travel Poster.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Sanitary Towels</h3>
-                        <p class="portfolio-category">Poster</p>
-                        <p class="portfolio-description">Created a visually compelling donation poster that communicates the cause and motivates support.</p>
+                    <div class="portfolio-item">
+                        <img src="Brown Gold Classic Hair Salon Flyer.png" alt="Hair Salon Flyer" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Avha Creations</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Created a visually appealing salon service poster.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="Copy of Gracefully Broken.png" alt="placeholder" class="flyers-img" />
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Gracefully Broken</h3>
-                        <p class="portfolio-category">Book Cover</p>
-                        <p class="portfolio-description">Designed a striking book cover using custom illustrations and typography to evoke the mood of the story.</p>
+                    <div class="portfolio-item">
+                        <img src="Blue and White Blue and Orange Professional  Travel Poster.png" alt="Sanitary Towels" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Sanitary Towels</h3>
+                            <p class="portfolio-category">Poster</p>
+                            <p class="portfolio-description">Created a visually compelling donation poster.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="Copy of Gracefully Broken.png" alt="Gracefully Broken" class="flyer-img" />
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Gracefully Broken</h3>
+                            <p class="portfolio-category">Book Cover</p>
+                            <p class="portfolio-description">Designed a striking book cover using custom illustrations.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1142,7 +1077,7 @@
                 <div class="form-group">
                     <textarea class="form-control" placeholder="Tell me about your project..."></textarea>
                 </div>
-                <button type="submit" class="submit-button">Send Message</button>
+                <button type="submit" class="submit-button"><a href="https://wa.me/c/27608235783">Send Message</a></button>
             </form>
         </div>
     </section>
@@ -1164,12 +1099,12 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <ul class="social-icons">
-                    <li><a href="#">
+                    <li><a href="https://www.facebook.com/profile.php?id=61568431705758&mibextid=ZbWKwL">
                         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                         </svg>
                     </a></li>
-                    <li><a href="#">
+                    <li><a href="https://www.instagram.com/creativevisiondesignstudio?igsh=MTF0cHF6aTJ0czQ3ZA==">
                         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
